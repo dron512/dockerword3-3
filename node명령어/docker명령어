@@ -1,0 +1,21 @@
+docker run # 이미지 파일을 다운을 받고 container 생성해서 start
+
+docker pull # 이미지 파일만 다운을 받습니다
+ - docker pull node
+ - docker pull python
+
+docker start # 이미지 파일로 container 생성해서 start
+docker stop # cotainer 멈춤
+
+docker run -it -d -p 8000:8000 --name=nodejs_ node
+docker run -it -d -p 3000:3000 --name=expressjs_ node
+
+docker ps # container list 보기
+docker images # images list 보기
+
+docker cp app.js nodejs_:/app.js
+docker exec -it nodejs_ bash
+
+node app.js # app.js 파일을 실행해달라
+python app.py # python app.py 파일을 실행해달라
+java myjar.jar # jar 파일 실행해달라
