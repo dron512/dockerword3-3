@@ -1,0 +1,17 @@
+docker run -d --name <container name> --network <network name> <image name>
+
+docker network create docker-net
+# docker mysql 실행 명령어
+docker run -d --name mymysql -e MYSQL_ROOT_PASSWORD=password --expose=3306 -p 3306:3306  -v e:/mymysql:/var/lib/mysql --network docker-net --network-alias mysql mysqlexpose
+# docker logs mymysql <- docker logs 보는 명령어
+
+docker exec -it mymysql bash
+
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+
+docker run -it -d --name mynode -p 5000:5000  -v e:/mynode:/app --network docker-net -e MYSQL_HOST=mysql -e MYSQL_USER=root -e MYSQL_PASSWORD=password -e MYSQL_DB=word node:18.13.0
+docker exec -it mynode bash
+
+ping 설치하기
+apt update
+apt-get install iputils-ping
